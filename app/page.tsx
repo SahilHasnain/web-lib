@@ -13,22 +13,22 @@ type Book = {
 
 const books: Book[] = [
   {
-    id: "adawlatul-makkiya",
-    title: "Adawlatul Makkiya",
-    subtitle: "A digital edition from the library collection",
-    collection: "Islamic literature",
-    coverImage: "/covers/432-adawlatul-makkiya.png",
-    pdf: "/pdfs/Adawlatul%20Makkiya.pdf",
-    fileName: "Adawlatul Makkiya.pdf",
+    id: "ikhteyarate-mustafa-english",
+    title: "Ikhteyarate Mustafa (English)",
+    subtitle: "English digital edition from the library collection",
+    collection: "Seerah",
+    coverImage: "/covers/ikhteyarate-mustafa-english-digital.png",
+    pdf: "/pdfs/ikhteyarate-mustafa-english-digital.pdf",
+    fileName: "ikhteyarate-mustafa-english-digital.pdf",
   },
   {
-    id: "seerate-mustafa-roman-urdu",
-    title: "Seerate Mustafa (Roman Urdu)",
-    subtitle: "Roman Urdu edition from the library collection",
+    id: "shifa-shareef-english",
+    title: "Shifa Shareef (English)",
+    subtitle: "English digital edition from the library collection",
     collection: "Seerah",
-    coverImage: "/covers/seerate-mustafa-roman-urdu.png",
-    pdf: "/pdfs/Seerate%20Mustafa%20(Roman%20Urdu).pdf",
-    fileName: "Seerate Mustafa (Roman Urdu).pdf",
+    coverImage: "/covers/shifa-shareef-english-digital.png",
+    pdf: "/pdfs/shifa-shareef-english-digital.pdf",
+    fileName: "shifa-shareef-english-digital.pdf",
   },
 ];
 
