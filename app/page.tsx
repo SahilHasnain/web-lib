@@ -1,40 +1,42 @@
 import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+import { books } from "../lib/books";
+import { absoluteUrl } from "../lib/site";
 
-type Book = {
-  id: string;
-  title: string;
-  subtitle: string;
-  collection: string;
-  coverImage: string;
-  pdf: string;
-  fileName: string;
+export const metadata: Metadata = {
+  title: "Islamic Digital Library",
+  description:
+    "Explore thoughtfully selected Islamic books and English Seerah PDFs at Bayt Al-Ilm.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Bayt Al-Ilm | Islamic Digital Library",
+    description:
+      "Explore thoughtfully selected Islamic books and English Seerah PDFs at Bayt Al-Ilm.",
+    url: "/",
+    images: [{ url: absoluteUrl("/covers/shifa-shareef-english-digital.png") }],
+  },
 };
 
-const books: Book[] = [
-  {
-    id: "ikhteyarate-mustafa-english",
-    title: "Ikhteyarate Mustafa (English)",
-    subtitle: "English digital edition from the library collection",
-    collection: "Seerah",
-    coverImage: "/covers/ikhteyarate-mustafa-english-digital.png",
-    pdf: "/pdfs/ikhteyarate-mustafa-english-digital.pdf",
-    fileName: "ikhteyarate-mustafa-english-digital.pdf",
-  },
-  {
-    id: "shifa-shareef-english",
-    title: "Shifa Shareef (English)",
-    subtitle: "English digital edition from the library collection",
-    collection: "Seerah",
-    coverImage: "/covers/shifa-shareef-english-digital.png",
-    pdf: "/pdfs/shifa-shareef-english-digital.pdf",
-    fileName: "shifa-shareef-english-digital.pdf",
-  },
-];
-
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Bayt Al-Ilm",
+    description: "An Islamic digital library for thoughtful reading.",
+    url: absoluteUrl("/"),
+  };
+
   return (
     <main className="library-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="site-frame">
         <header className="site-header">
           <Link className="brand" href="/" aria-label="Bayt Al-Ilm home">
@@ -78,7 +80,7 @@ export default function Home() {
 
         <section className="book-grid" aria-label="Library books">
           {books.map((book) => (
-            <article className="book-card" key={book.id}>
+            <article className="book-card" key={book.slug}>
               <div className="book-cover">
                 <Image
                   className="book-cover-image"
@@ -90,8 +92,16 @@ export default function Home() {
               </div>
               <div className="book-info">
                 <p className="book-collection">{book.collection}</p>
-                <h3>{book.title}</h3>
-                <p className="book-subtitle">{book.subtitle}</p>
+                <h3>
+                  <Link href={`/books/${book.slug}`}>{book.title}</Link>
+                </h3>
+                <p className="book-subtitle">{book.description}</p>
+                <Link className="download-link" href={`/books/${book.slug}`}>
+                  <span>View book details</span>
+                  <span className="download-icon" aria-hidden="true">
+                    →
+                  </span>
+                </Link>
                 <a
                   className="download-link"
                   href={book.pdf}
