@@ -104,7 +104,7 @@ export default function Home() {
                 </Link>
                 <a
                   className="download-link"
-                  href={book.pdf}
+                  href={`/api/download/${book.slug}`}
                   download={book.fileName}
                 >
                   <span>Download PDF</span>

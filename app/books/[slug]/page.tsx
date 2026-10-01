@@ -116,7 +116,11 @@ export default async function BookPage({ params }: BookPageProps) {
                 <dd>Digital PDF</dd>
               </div>
             </dl>
-            <a className="download-link" href={book.pdf} download={book.fileName}>
+            <a
+              className="download-link"
+              href={`/api/download/${book.slug}`}
+              download={book.fileName}
+            >
               <span>Download PDF</span>
               <span className="download-icon" aria-hidden="true">
                 ↓

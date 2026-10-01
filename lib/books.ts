@@ -1,5 +1,6 @@
 export type Book = {
   slug: string;
+  downloadCounterId: string;
   title: string;
   description: string;
   collection: string;
@@ -12,6 +13,7 @@ export type Book = {
 export const books: Book[] = [
   {
     slug: "ikhteyarate-mustafa-english",
+    downloadCounterId: "ikhteyarate-mustafa-english",
     title: "Ikhteyarate Mustafa (English)",
     description:
       "Read the English digital edition of Ikhteyarate Mustafa from the Bayt Al-Ilm Seerah collection.",
@@ -23,6 +25,7 @@ export const books: Book[] = [
   },
   {
     slug: "shifa-shareef-english",
+    downloadCounterId: "shifa-shareef-english",
     title: "Shifa Shareef (English)",
     description:
       "Read the English digital edition of Shifa Shareef from the Bayt Al-Ilm Seerah collection.",
@@ -34,6 +37,7 @@ export const books: Book[] = [
   },
   {
     slug: "tawakkul-the-missing-peace-in-the-journey-of-life",
+    downloadCounterId: "tawakkul-life",
     title: "Tawakkul: The Missing Peace in the Journey of Life",
     description:
       "A consideration of reliance upon Allah (tawakkul) and inner peace on the journey of life.",

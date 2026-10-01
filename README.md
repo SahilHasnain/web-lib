@@ -41,3 +41,15 @@ The canonical production URL is configured as `https://books.durood.live`.
 The app generates page metadata, canonical URLs, Open Graph metadata, JSON-LD
 book data, `sitemap.xml`, and `robots.txt`. The sitemap is available at
 `/sitemap.xml` after deployment.
+
+## Download Tracking
+
+Downloads are counted through a server-only Appwrite integration. Configure the
+variables in `.env.example` in the deployment environment. The Appwrite
+database collection must contain one document per book, with the document ID
+matching the book's `downloadCounterId` value and a numeric `downloadCount`
+attribute initialized to `0`. Counter document IDs may be shorter than public
+book slugs because Appwrite limits document IDs to 36 characters.
+
+The API key must have permission to update documents in this collection. Do
+not expose it as a `NEXT_PUBLIC_` variable.
