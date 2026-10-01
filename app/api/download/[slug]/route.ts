@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import { getBook } from "../../../../lib/books";
 import { getAppwriteDownloads } from "../../../../lib/appwrite";
+import { absoluteUrl } from "../../../../lib/site";
 
 type DownloadRouteContext = {
   params: Promise<{ slug: string }>;
 };
 
-export async function GET(request: Request, { params }: DownloadRouteContext) {
+export async function GET(_request: Request, { params }: DownloadRouteContext) {
   const { slug } = await params;
   const book = getBook(slug);
 
@@ -28,5 +29,5 @@ export async function GET(request: Request, { params }: DownloadRouteContext) {
     console.error(`Unable to record download for ${book.slug}`, error);
   }
 
-  return NextResponse.redirect(new URL(book.pdf, request.url));
+  return NextResponse.redirect(absoluteUrl(book.pdf));
 }
