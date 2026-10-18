@@ -12,6 +12,18 @@ export type Book = {
 
 export const books: Book[] = [
   {
+    slug: "addawlatul-makkiyyah-english",
+    downloadCounterId: "addawlatul-makkiyyah",
+    title: "Addawlatul Makkiyyah (English)",
+    description:
+      "Read the English digital edition of Addawlatul Makkiyyah from the Bayt Al-Ilm collection.",
+    collection: "Islamic literature",
+    language: "English",
+    coverImage: "/covers/addawatul-makkiyyah-english-digital.png",
+    pdf: "/pdfs/addawatul-makkiyyah-english-digital.pdf",
+    fileName: "addawatul-makkiyyah-english-digital.pdf",
+  },
+  {
     slug: "ikhteyarate-mustafa-english",
     downloadCounterId: "ikhteyarate-mustafa-english",
     title: "Ikhteyarate Mustafa (English)",
