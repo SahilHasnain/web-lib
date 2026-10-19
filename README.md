@@ -51,5 +51,9 @@ matching the book's `downloadCounterId` value and a numeric `downloadCount`
 attribute initialized to `0`. Counter document IDs may be shorter than public
 book slugs because Appwrite limits document IDs to 36 characters.
 
+Counter documents are created automatically on the first download. Existing
+documents are incremented atomically, so adding a book only requires updating
+the book metadata in `lib/books.ts`.
+
 The API key must have permission to update documents in this collection. Do
 not expose it as a `NEXT_PUBLIC_` variable.

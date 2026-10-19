@@ -18,13 +18,35 @@ export async function GET(_request: Request, { params }: DownloadRouteContext) {
   try {
     const { databases, databaseId, collectionId } = getAppwriteDownloads();
 
-    await databases.incrementDocumentAttribute(
-      databaseId,
-      collectionId,
-      book.downloadCounterId,
-      "downloadCount",
-      1,
-    );
+    try {
+      await databases.incrementDocumentAttribute(
+        databaseId,
+        collectionId,
+        book.downloadCounterId,
+        "downloadCount",
+        1,
+      );
+    } catch {
+      // Create the counter on the first download. If another request creates it
+      // concurrently, retry the atomic increment against the existing document.
+      try {
+        await databases.createDocument(
+          databaseId,
+          collectionId,
+          book.downloadCounterId,
+          { downloadCount: 1 },
+          [],
+        );
+      } catch {
+        await databases.incrementDocumentAttribute(
+          databaseId,
+          collectionId,
+          book.downloadCounterId,
+          "downloadCount",
+          1,
+        );
+      }
+    }
   } catch (error) {
     console.error(`Unable to record download for ${book.slug}`, error);
   }
